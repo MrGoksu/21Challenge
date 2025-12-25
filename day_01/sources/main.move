@@ -10,7 +10,9 @@ module challenge::day_01 {
     // Day 1: Basic module structure + primitive types
 
     // TODO: Define three constants to practice primitive types
-    //
+    const NUMBER: u64 = 19;
+    const FLAG: bool = false;
+    const MY_ADDRESS: address = @0xd4;
     // Example format:
     // const NUMBER: u64 = 42;
     // const FLAG: bool = true;
