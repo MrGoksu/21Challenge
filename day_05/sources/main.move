@@ -34,7 +34,14 @@ module challenge::day_05 {
     public fun add_habit(list: &mut HabitList, habit: Habit) {
         vector::push_back(&mut list.habits, habit);
     }
-
+    public fun complete_habit (list: &mut HabitList, index: u64){
+        Let = Len = vector::Length (&list.habits);
+        if (index<len){
+            let habit = vector :: borrow_mut (&mut list.habits, index);
+            habit.completed=true;
+        }
+        
+    }
     // TODO: Write a function 'complete_habit' that:
     // - Takes list: &mut HabitList and index: u64
     // - Checks if index is valid (less than vector length)
