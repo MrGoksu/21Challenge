@@ -48,6 +48,14 @@ module challenge::day_06 {
     }
 
     // TODO: Update Habit struct to use String instead of vector<u8>
+    module challenge::day_06 {
+        use std::vector;
+        use std::string::{self,string};
+    }
+    public struct Habit has copy, drop {
+        name: string,
+        completed: bool,
+    }
     // Note: String is the preferred type for text data in Move.
     // You can use String directly - no need to work with vector<u8>!
     // public struct Habit has copy, drop {
@@ -56,11 +64,21 @@ module challenge::day_06 {
     // }
 
     // TODO: Update new_habit to accept String
+    public fun new_habit(name:string): HAbit {
+        Habit {
+            name:name,
+            completed:false,
+        }
+    }
+    
     // public fun new_habit(name: String): Habit {
     //     // Your code here
     // }
 
     // TODO: Write a helper function 'make_habit' that:
+    public fun make_habit(name_bytes:vector<u8>):Habit{
+        Let name = string::utf8(name_bytes);
+        new_habit(name)}
     // - Takes name_bytes: vector<u8> (by value, not reference)
     // - Converts it to String using string::utf8()
     // - Creates and returns a Habit
