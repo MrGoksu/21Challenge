@@ -50,12 +50,9 @@ module challenge::day_07 {
             habit.completed = true;
         }
     }
-    // Note: assert! is a built-in macro in Move 2024 - no import needed!
 
-    // TODO: Write a test 'test_add_habits' that:
-    // - Creates an empty list
-    // - Adds 1-2 habits
-    // - Checks that the list length is correct
+
+    
     #[test]
     fun test_add_habits(){
 
@@ -72,11 +69,7 @@ module challenge::day_07 {
     }
     
 
-    // TODO: Write a test 'test_complete_habit' that:
-    // - Creates a list and adds a habit
-    // - Completes the habit
-    // - Checks that completed == true
-    // #[test]
+    
     #[test]
     fun test_complete_habit(){
         let mut list = empty_list();
