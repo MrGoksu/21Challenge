@@ -50,26 +50,43 @@ module challenge::day_07 {
             habit.completed = true;
         }
     }
-
     // Note: assert! is a built-in macro in Move 2024 - no import needed!
 
     // TODO: Write a test 'test_add_habits' that:
     // - Creates an empty list
     // - Adds 1-2 habits
     // - Checks that the list length is correct
-    // #[test]
-    // fun test_add_habits() {
-    //     // Your code here
-    //     // Use b"Exercise".to_string() to create a String
-    // }
+    #[test]
+    fun test_add_habits(){
+
+        let mut list = empty_list();
+
+        let habit1= new_habit(b"Exercise".to_string());
+        let habit2= new_habit(b"Mediate".to_string());
+        add_habit(&mut list, habit1);
+        add_habit(&mut list, habit2);
+
+        let len = vector::length(&list.habits);
+
+        assert!(len == 2, 0);
+    }
+    
 
     // TODO: Write a test 'test_complete_habit' that:
     // - Creates a list and adds a habit
     // - Completes the habit
     // - Checks that completed == true
     // #[test]
-    // fun test_complete_habit() {
-    //     // Your code here
-    // }
+    #[test]
+    fun test_complete_habit(){
+        let mut list = empty_list();
+        let habit = new_habit(string::utf8(b"Exercise"));
+        add_habit(&mut list,habit);
+        complete_habit(&mut list,0);
+
+        let completed_habit = vector::borrow(&list.habits,0);
+        assert!(completed_habit.completed == true);
+    }
+    
 }
 
