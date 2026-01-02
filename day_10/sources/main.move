@@ -33,7 +33,9 @@ module challenge::day_10 {
     public fun is_open(task: &Task): bool {
         task.status == TaskStatus::Open
     }
-
+public fun complete_task(task: &mut Task){
+    task.status=TaskStastus::Completed;
+}
     // TODO: Write a public function 'complete_task' that:
     // - Takes task: &mut Task
     // - Sets task.status = TaskStatus::Completed
@@ -41,7 +43,12 @@ module challenge::day_10 {
     // public fun complete_task(task: &mut Task) {
     //     // Your code here
     // }
-
+fun internal_helper(t: &Task): bool {
+    t.reward > 0
+}
+public fun has_valid_reward (t: &Task):bool{
+    internal_helper(t)
+}
     // TODO: (Optional) Write a private helper function
     // Private functions use 'fun' instead of 'public fun'
     // They can only be called from within the same module
