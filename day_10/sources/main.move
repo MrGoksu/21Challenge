@@ -34,7 +34,7 @@ module challenge::day_10 {
         task.status == TaskStatus::Open
     }
 public fun complete_task(task: &mut Task){
-    task.status=TaskStastus::Completed;
+    task.status=TaskStatus::Completed;
 }
     // TODO: Write a public function 'complete_task' that:
     // - Takes task: &mut Task
