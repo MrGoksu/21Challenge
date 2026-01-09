@@ -82,27 +82,41 @@ module challenge::day_14 {
         count
     }
 
-    // Note: assert! is a built-in macro in Move 2024 - no import needed!
+   
+    #[test]
+    fun test_create_board_and_add_task() {
+        let owner = @0x1;
+        let mut board = new_board(owner);
+        let task = new_task(string::utf8(b"Test Task"), 100);
+        add_task(&mut board,task);
+        let len = vector::length(&board.tasks);
+        assert!(len==1);
+    }
+   
+    #[test]
+    fun test_complete_task(){
+        let owner=@0x1;
+        let mut board = new_board(owner);
+        let mut task1 = new_task(string::utf8(b"Task 1"),50);
+        let mut task2 = new_task(string::utf8(b"Task 2"),75);
+        add_task(&mut board,task1);
+        add_task(&mut board,task2);
+        let task = vector::borrow_mut(&mut board.tasks, 0);
+        complete_task(task);
+        
+        assert_eq!(completed_count(&board), 1);
+    }
 
-    // TODO: Write at least 3 tests:
-    // 
-    // Test 1: test_create_board_and_add_task
-    // - Create a board with an owner
-    // - Add a task
-    // - Verify the task was added
-    // 
-    // Test 2: test_complete_task
-    // - Create board, add tasks
-    // - Complete a task
-    // - Verify completed_count is correct
-    // 
-    // Test 3: test_total_reward
-    // - Create board, add multiple tasks with different rewards
-    // - Verify total_reward is correct
-    // 
-    // #[test]
-    // fun test_create_board_and_add_task() {
-    //     // Your code here
-    // }
+    #[test]
+    fun test_total_reward(){
+    let owner = @0x1;
+    let mut board = new_board(owner);
+    let task1 = new_task(string::utf8(b"Task 1"), 50);
+    let task2 = new_task(string::utf8(b"Task 2"),100);
+    add_task(&mut board,task1);
+    add_task(&mut board,task2);
+    let total = total_reward(&board);
+    assert!(total==150);   
+    }
 }
 
